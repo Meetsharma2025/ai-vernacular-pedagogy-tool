@@ -22,7 +22,7 @@ export function ensureSeeded(): Promise<void> {
 
 /** Demo classmates so the class leaderboard has life from the first run. */
 async function seedDemoProgress(): Promise<void> {
-  const existing = await db.execute(sql`select count(*)::int as c from progress`);
+  const existing = await db.execute(sql`select count(*)::int as c from gs_progress`);
   if (Number(existing.rows[0]?.c ?? 0) >= 5) return;
 
   const demo = [
@@ -42,7 +42,7 @@ async function seedDemoProgress(): Promise<void> {
 
 /** One sample teacher post so the student feed is never empty on first run. */
 async function seedSampleContent(): Promise<void> {
-  const existing = await db.execute(sql`select count(*)::int as c from teacher_content`);
+  const existing = await db.execute(sql`select count(*)::int as c from gs_teacher_content`);
   if (Number(existing.rows[0]?.c ?? 0) >= 1) return;
   await db
     .insert(teacherContent)
@@ -59,7 +59,7 @@ async function seedSampleContent(): Promise<void> {
 }
 
 async function runSeed(): Promise<void> {
-  const result = await db.execute(sql`select count(*)::int as c from lessons`);
+  const result = await db.execute(sql`select count(*)::int as c from gs_lessons`);
   const c = Number(result.rows[0]?.c ?? 0);
 
   // Demo classmates + sample teacher post are seeded regardless of whether

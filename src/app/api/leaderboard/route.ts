@@ -17,7 +17,7 @@ export async function GET() {
                sum(score)::int as score,
                sum(total)::int as total,
                count(*)::int as attempts
-        from progress
+        from gs_progress
         group by student_key
         order by case when sum(total) > 0 then sum(score)::float / sum(total) else 0 end desc,
                  sum(score) desc
