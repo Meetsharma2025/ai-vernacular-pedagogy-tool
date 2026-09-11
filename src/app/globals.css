@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+:root {
+  --gs-indigo: #4f46e5;
+  --gs-sky: #0284c7;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Noto Sans Devanagari",
+    "Noto Sans",
+    sans-serif;
+}
+
+/* Devanagari / Ol Chiki friendly headings */
+h1,
+h2,
+h3,
+.brand {
+  font-family:
+    "Noto Sans Devanagari",
+    "Noto Sans",
+    system-ui,
+    sans-serif;
+}
+
+@keyframes gs-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gs-animate {
+  animation: gs-fade-up 0.35s ease both;
+}
+
+@keyframes gs-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(244, 63, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(244, 63, 94, 0);
+  }
+}
+
+.gs-mic-live {
+  animation: gs-pulse-ring 1.4s infinite;
+}
+
+/* Gamification: pop-in award chips + falling confetti */
+@keyframes gs-pop {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.gs-pop {
+  animation: gs-pop 0.45s ease both;
+}
+
+@keyframes gs-fall {
+  0% {
+    transform: translateY(-8vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(108vh) rotate(340deg);
+    opacity: 0.4;
+  }
+}
+
+.gs-confetti span {
+  position: absolute;
+  top: -6vh;
+  animation: gs-fall linear forwards;
+}
+
+/* Bouncy mascot */
+@keyframes gs-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.gs-bounce {
+  animation: gs-bounce 2.4s ease-in-out infinite;
+}
+
+/* Worksheet print styles */
+@media print {
+  header,
+  footer,
+  .gs-no-print {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+  }
+  .gs-print-card {
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
+
+::-webkit-scrollbar {
+  height: 6px;
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 8px;
+}
